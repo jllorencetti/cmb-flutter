@@ -16,19 +16,49 @@ final listPetTest = List<Pet>.generate(20, (int index) {
 
 Widget _homePage() {
   Widget _itemBuilder(BuildContext context, int index) {
-    return Container(
-      padding: EdgeInsets.only(left: 10.0),
-      alignment: Alignment.centerLeft,
-      child: Text(
-        listPetTest[index].name,
-        style: Theme.of(context).textTheme.headline,
+    final pet = listPetTest[index];
+
+    Widget _petImage = Image.network(
+      pet.imageUrl,
+      height: 120.0,
+    );
+
+    Widget _cardBody = Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            pet.name,
+            style: Theme.of(context).textTheme.title,
+          ),
+          Text(
+            pet.status,
+          ),
+          Text(
+            'Araras - SP',
+          ),
+        ],
+      ),
+    );
+
+    return Card(
+      elevation: 3.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _petImage,
+            _cardBody,
+          ],
+        ),
       ),
     );
   }
 
   Widget petList = ListView.builder(
     itemCount: listPetTest.length,
-    itemExtent: 60.0,
     itemBuilder: _itemBuilder,
   );
 
