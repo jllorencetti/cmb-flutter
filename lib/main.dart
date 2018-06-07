@@ -20,7 +20,7 @@ Widget _homePage() {
 
     Widget _petImage = Image.network(
       pet.imageUrl,
-      height: 120.0,
+      height: 100.0,
     );
 
     Widget _cardBody = Padding(
@@ -42,18 +42,24 @@ Widget _homePage() {
       ),
     );
 
-    return Card(
-      elevation: 3.0,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _petImage,
-            _cardBody,
-          ],
+    return Column(
+      children: <Widget>[
+        InkWell(
+          onTap: () {},
+          splashColor: Colors.lightGreen,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _petImage,
+                _cardBody,
+              ],
+            ),
+          ),
         ),
-      ),
+        Divider(),
+      ],
     );
   }
 
