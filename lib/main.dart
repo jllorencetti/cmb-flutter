@@ -66,7 +66,10 @@ Widget _homePage() {
     appBar: AppBar(
       title: Text('Cadê meu Bicho'),
     ),
-    body: petList,
+    body: RefreshIndicator(
+      onRefresh: () async {},
+      child: petList,
+    ),
   );
 }
 
