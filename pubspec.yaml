@@ -2,6 +2,8 @@ name: cademeubicho
 description: A new Flutter application.
 
 dependencies:
+  http: any
+
   flutter:
     sdk: flutter
 
