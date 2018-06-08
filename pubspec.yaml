@@ -2,7 +2,8 @@ name: cademeubicho
 description: A new Flutter application.
 
 dependencies:
-  http: any
+  http: "0.11.3+16"
+  cached_network_image: "0.4.1"
 
   flutter:
     sdk: flutter

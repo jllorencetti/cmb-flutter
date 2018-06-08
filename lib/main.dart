@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.green[900],
+        accentColor: Colors.green[900],
       ),
       home: _homePage(),
     );
@@ -41,7 +43,7 @@ class _PetListState extends State<PetList> {
       name: 'Testing Pet ${index + 1}',
       description:
           "Eat owner's food, chase tail sit and stare, sleep everywhere.",
-      imageUrl: 'https://placekitten.com/350/350',
+      imageUrl: 'https://placekitten.com/100/100',
       status: 'Adopted',
       city: 'Araras',
     );
@@ -50,8 +52,13 @@ class _PetListState extends State<PetList> {
   Widget _itemBuilder(BuildContext context, int index) {
     final pet = listPetTest[index];
 
-    Widget _petImage = Image.network(
-      pet.imageUrl,
+    Widget _petImage = CachedNetworkImage(
+      placeholder: SizedBox(
+        child: CircularProgressIndicator(),
+        height: 100.0,
+        width: 100.0,
+      ),
+      imageUrl: pet.imageUrl,
       width: 100.0,
       height: 100.0,
       fit: BoxFit.cover,
@@ -79,24 +86,21 @@ class _PetListState extends State<PetList> {
       ),
     );
 
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {},
-          splashColor: Colors.lightGreen,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _petImage,
-                _cardBody,
-              ],
-            ),
+    return Card(
+      child: InkWell(
+        onTap: () {},
+        splashColor: Colors.lightGreen,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _petImage,
+              _cardBody,
+            ],
           ),
         ),
-        Divider(),
-      ],
+      ),
     );
   }
 
