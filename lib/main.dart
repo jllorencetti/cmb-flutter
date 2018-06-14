@@ -43,7 +43,8 @@ class _PetListState extends State<PetList> {
       name: 'Testing Pet ${index + 1}',
       description:
           "Eat owner's food, chase tail sit and stare, sleep everywhere.",
-      imageUrl: 'https://placekitten.com/100/100',
+      profilePicUrl: 'https://placekitten.com/100/100',
+      thumbPicUrl: 'https://placekitten.com/100/100',
       status: 'Adopted',
       city: 'Araras',
     );
@@ -58,7 +59,7 @@ class _PetListState extends State<PetList> {
         height: 100.0,
         width: 100.0,
       ),
-      imageUrl: pet.imageUrl,
+      imageUrl: pet.thumbPicUrl,
       width: 100.0,
       height: 100.0,
       fit: BoxFit.cover,
