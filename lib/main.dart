@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'models.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 Widget _homePage() {
   return Scaffold(
@@ -31,28 +31,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PetList extends StatefulWidget {
+class PetListItem extends StatelessWidget {
+  final Pet pet;
+
+  const PetListItem({Key key, this.pet}) : super(key: key);
+
   @override
-  _PetListState createState() => _PetListState();
-}
-
-class _PetListState extends State<PetList> {
-  // Placeholder data
-  var listPetTest = List<Pet>.generate(20, (int index) {
-    return Pet(
-      name: 'Testing Pet ${index + 1}',
-      description:
-          "Eat owner's food, chase tail sit and stare, sleep everywhere.",
-      profilePicUrl: 'https://placekitten.com/100/100',
-      thumbPicUrl: 'https://placekitten.com/100/100',
-      status: 'Adopted',
-      city: 'Araras',
-    );
-  });
-
-  Widget _itemBuilder(BuildContext context, int index) {
-    final pet = listPetTest[index];
-
+  Widget build(BuildContext context) {
     Widget _petImage = CachedNetworkImage(
       placeholder: SizedBox(
         child: CircularProgressIndicator(),
@@ -103,6 +88,30 @@ class _PetListState extends State<PetList> {
         ),
       ),
     );
+  }
+}
+
+class PetList extends StatefulWidget {
+  @override
+  _PetListState createState() => _PetListState();
+}
+
+class _PetListState extends State<PetList> {
+  // Placeholder data
+  var listPetTest = List<Pet>.generate(20, (int index) {
+    return Pet(
+      name: 'Testing Pet ${index + 1}',
+      description:
+          "Eat owner's food, chase tail sit and stare, sleep everywhere.",
+      profilePicUrl: 'https://placekitten.com/100/100',
+      thumbPicUrl: 'https://placekitten.com/100/100',
+      status: 'Adopted',
+      city: 'Araras',
+    );
+  });
+
+  Widget _itemBuilder(BuildContext context, int index) {
+    return PetListItem(pet: listPetTest[index]);
   }
 
   @override
